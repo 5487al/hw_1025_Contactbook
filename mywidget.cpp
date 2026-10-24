@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QDebug>
+#include <QCoreApplication>
 
 MyWidget::MyWidget(QWidget *parent)
     : QWidget(parent), ui(new Ui::MyWidget)
@@ -84,7 +85,7 @@ void CbWrite(QString fileName, QString str)
 // 3. 匯出通訊錄
 void MyWidget::on_exportButton_clicked()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "匯出通訊錄", ".", "csv(*.csv);;text(*.txt)");
+    QString fileName = QFileDialog::getSaveFileName(this, "匯出通訊錄", QCoreApplication::applicationDirPath(), "csv(*.csv);;text(*.txt)");
     if (fileName.isEmpty())
     {
         return;
@@ -113,7 +114,7 @@ void MyWidget::on_exportButton_clicked()
 // 4. 匯入通訊錄
 void MyWidget::on_importButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, "匯入通訊錄", ".", "csv(*.csv);;text(*.txt)");
+    QString fileName = QFileDialog::getOpenFileName(this, "匯入通訊錄", QCoreApplication::applicationDirPath(), "csv(*.csv);;text(*.txt)");
     if (fileName.isEmpty())
     {
         return;
